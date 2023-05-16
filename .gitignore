@@ -1,3 +1,4 @@
+1_Intro/Data/*.parquet
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
