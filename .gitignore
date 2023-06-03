@@ -1,4 +1,10 @@
-1_Intro/Data/*.parquet
+Data/*.parquet
+1_Intro/yellow_tripdata_2022-01.parquet
+1_Intro/yellow_tripdata_2022-02.parquet
+mlartifacts/
+mlruns/
+output/
+mydb.db
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
