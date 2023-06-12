@@ -1,6 +1,7 @@
-Data/*.parquet
-1_Intro/yellow_tripdata_2022-01.parquet
-1_Intro/yellow_tripdata_2022-02.parquet
+# Data/*.parquet
+Data/green_tripdata_2022-01.parquet
+Data/green_tripdata_2022-02.parquet
+Data/green_tripdata_2022-03.parquet
 mlartifacts/
 mlruns/
 output/
