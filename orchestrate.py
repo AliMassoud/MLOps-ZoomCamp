@@ -9,6 +9,7 @@ from sklearn.metrics import mean_squared_error
 import mlflow
 import xgboost as xgb
 from prefect import flow, task
+from prefect.artifacts import create_markdown_artifact
 
 
 @task(retries=3, retry_delay_seconds=2)
@@ -100,6 +101,14 @@ def train_best_model(
         y_pred = booster.predict(valid)
         rmse = mean_squared_error(y_val, y_pred, squared=False)
         mlflow.log_metric("rmse", rmse)
+        markdown_report = f"""
+        ### The RMSE is: {rmse}
+        """
+        create_markdown_artifact(
+            key="gtm-report",
+            markdown=markdown_report,
+            description="model performance with RMSE",
+        )
 
         pathlib.Path("models").mkdir(exist_ok=True)
         with open("models/preprocessor.b", "wb") as f_out:
@@ -113,7 +122,7 @@ def train_best_model(
 @flow
 def main_flow(
     train_path: str = "./Data/green_tripdata_2023-01.parquet",
-    val_path: str = "./Data/green_tripdata_2023-02.parquet",
+    val_path: str = "./Data/green_tripdata_2023-03.parquet",
 ) -> None:
     """The main training pipeline"""
 
